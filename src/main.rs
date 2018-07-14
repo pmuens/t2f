@@ -4,19 +4,22 @@ use std::env;
 extern crate serde_derive;
 extern crate serde;
 extern crate serde_json;
+extern crate chase;
 
 mod config;
+
+use chase::Chaser;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
     let config_file_path = &args[1];
 
     let config = config::parse(&config_file_path);
+    let chaser = Chaser::new(&config.file_path);
 
-    println!("{:?}", config.file_path);
-    println!("{:?}", config.mappings);
-    println!("{:?}", config.mappings[0].regex);
-    println!("{:?}", config.mappings[0].event);
-    println!("{:?}", config.mappings[1].regex);
-    println!("{:?}", config.mappings[1].event);
+    let (receiver, _) = chaser.run_channel().unwrap();
+    loop {
+        let log_line = &receiver.recv().unwrap().0;
+        println!("{}", log_line);
+    }
 }

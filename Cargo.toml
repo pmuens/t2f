@@ -7,3 +7,4 @@ authors = ["Philipp Muens <raute1337@gmx.de>"]
 serde = "1.0.70"
 serde_derive = "1.0.70"
 serde_json = "1.0.22"
+chase = "0.1.8"
