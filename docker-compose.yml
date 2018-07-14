@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  t2f:
+    image: rustlang/rust:nightly
+    container_name: t2f
+    command: bash
+    stdin_open: true
+    tty: true
+    working_dir: /app
+    environment:
+      - USER=$USER
+    volumes:
+      - .:/app
