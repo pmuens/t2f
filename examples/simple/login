@@ -1,0 +1,3 @@
+#!/bin/sh
+
+echo "Sat Sep 10 21:34:16 UTC 2011 login jdoe@example.com" >> ./logfile.log
