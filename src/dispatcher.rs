@@ -1,3 +1,4 @@
+use crossbeam;
 use regex::Regex;
 
 use config::{Config};
@@ -18,7 +19,11 @@ impl<'a> Dispatcher<'a> {
         for mapping in &self.config.mappings {
             let re = Regex::new(&mapping.regex).unwrap();
             if re.is_match(log_line) {
-                &self.emit(&mapping.event);
+                crossbeam::scope(|scope| {
+                    scope.spawn(move || {
+                        &self.emit(&mapping.event);
+                    });
+                })
             }
         }
     }

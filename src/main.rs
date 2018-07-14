@@ -6,6 +6,7 @@ extern crate serde;
 extern crate serde_json;
 extern crate chase;
 extern crate regex;
+extern crate crossbeam;
 
 mod config;
 mod dispatcher;
