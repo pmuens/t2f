@@ -1,0 +1,7 @@
+{
+  "filePath": "./logfile.log",
+  "mappings": [
+    { "regex": "^(.*) (signup) (.+)$", "event": "user.signup" },
+    { "regex": "^(.*) (login) (.+)$", "event": "user.login" }
+  ]
+}
