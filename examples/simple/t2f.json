@@ -3,5 +3,9 @@
   "mappings": [
     { "regex": "^(.*) (signup) (.+)$", "event": "user.signup" },
     { "regex": "^(.*) (login) (.+)$", "event": "user.login" }
-  ]
+  ],
+  "eventGateway": {
+    "url": "https://foo-bar.slsgateway.com",
+    "accessKey": "s0m34cc3ssk3y"
+  }
 }

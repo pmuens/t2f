@@ -1,12 +1,15 @@
 use std::env;
 
-#[macro_use]
-extern crate serde_derive;
+#[macro_use] extern crate serde_derive;
+#[macro_use] extern crate serde_json;
 extern crate serde;
-extern crate serde_json;
 extern crate chase;
 extern crate regex;
 extern crate crossbeam;
+extern crate hyper;
+extern crate hyper_tls;
+extern crate futures;
+extern crate tokio;
 
 mod config;
 mod dispatcher;
@@ -23,6 +26,8 @@ fn main() {
     let chaser = Chaser::new(&config.file_path);
 
     let (receiver, _) = chaser.run_channel().unwrap();
+
+    println!("Watching \"{}\" for events...", &config.file_path);
 
     loop {
         let log_line = &receiver.recv().unwrap().0;
